@@ -19,7 +19,7 @@ namespace EcommerceDB.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=.;Initial Catalog=ECommerceDB;Integrated Security=True;TrustServerCertificate=True;");
+            optionsBuilder.UseLazyLoadingProxies().UseSqlServer(@"Data Source=.;Initial Catalog=ECommerceDB;Integrated Security=True;TrustServerCertificate=True;MultipleActiveResultSets=True;");
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -31,6 +31,17 @@ namespace EcommerceDB.Context
             modelBuilder.ApplyConfiguration(new ShopConfiguration());
             modelBuilder.ApplyConfiguration(new OrderItemConfiguration());
             modelBuilder.ApplyConfiguration(new ProviderConfiguration());
+
+
+            modelBuilder.Entity<Category>().HasData(
+                new Category { ID= 1, Name = "Food", Description = "Food" },
+                new Category { ID = 2, Name = "Cloth", Description = "Cloth" },
+                new Category { ID = 3, Name = "Electroics", Description = "Electroics" }
+                );
+
+            modelBuilder.Entity<Provider>().HasData(
+                new Provider {ID= 1, FullName = "Test", Email = "test@gmail.com", UserName = "test" });
+
 
             base.OnModelCreating(modelBuilder);
         }

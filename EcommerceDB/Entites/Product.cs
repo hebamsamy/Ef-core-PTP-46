@@ -14,12 +14,12 @@ namespace EcommerceDB.Entites
 
         ///Relation
         public int ProviderID { get; set; }
-        public Provider Provider { get; set; }
+        public  virtual Provider Provider { get; set; }
 
         public int CategoryID { get; set; }
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
-        public ICollection<OrderItem> Items { get; set; }
+        public virtual ICollection<OrderItem> Items { get; set; }
 
 
     }

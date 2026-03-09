@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace EcommerceDB.Migrations
 {
     /// <inheritdoc />
-    public partial class update : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -135,6 +137,21 @@ namespace EcommerceDB.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Category",
+                columns: new[] { "ID", "Description", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Food", "Food" },
+                    { 2, "Cloth", "Cloth" },
+                    { 3, "Electroics", "Electroics" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Provider",
+                columns: new[] { "ID", "Email", "FullName", "UserName" },
+                values: new object[] { 1, "test@gmail.com", "Test", "test" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItem_ProductID",

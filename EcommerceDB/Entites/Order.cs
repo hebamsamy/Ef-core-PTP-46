@@ -12,7 +12,7 @@ namespace EcommerceDB.Entites
         public string Address { get; set; }
 
         public int? Status { get; set; }
-        public ICollection<OrderItem> Items { get; set; }
+        public virtual ICollection<OrderItem> Items { get; set; }
 
     }
 }

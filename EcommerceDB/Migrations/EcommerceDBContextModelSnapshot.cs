@@ -42,6 +42,26 @@ namespace EcommerceDB.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Category", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Description = "Food",
+                            Name = "Food"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Description = "Cloth",
+                            Name = "Cloth"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Description = "Electroics",
+                            Name = "Electroics"
+                        });
                 });
 
             modelBuilder.Entity("EcommerceDB.Entites.Order", b =>
@@ -155,6 +175,15 @@ namespace EcommerceDB.Migrations
                         .IsUnique();
 
                     b.ToTable("Provider", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Email = "test@gmail.com",
+                            FullName = "Test",
+                            UserName = "test"
+                        });
                 });
 
             modelBuilder.Entity("EcommerceDB.Entites.Shop", b =>

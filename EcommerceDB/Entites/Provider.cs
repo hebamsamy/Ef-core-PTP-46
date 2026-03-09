@@ -12,8 +12,8 @@ namespace EcommerceDB.Entites
         public string UserName { get; set; }
         public string Email { get; set; }
         
-        public Shop Shop { get; set; }
+        public virtual Shop Shop { get; set; }
 
-        public ICollection<Product> Products { get; set; } = new List<Product>();
+        public virtual ICollection<Product> Products { get; set; } = new List<Product>();
     }
 }

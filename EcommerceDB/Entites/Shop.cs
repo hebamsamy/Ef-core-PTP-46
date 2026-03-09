@@ -12,7 +12,7 @@ namespace EcommerceDB.Entites
         public string Image { get; set; }
 
         public int ProviderID { get; set; }
-        public Provider Provider { get; set; }
+        public virtual Provider Provider { get; set; }
 
     }
 }
