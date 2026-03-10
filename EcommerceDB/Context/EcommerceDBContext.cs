@@ -31,6 +31,7 @@ namespace EcommerceDB.Context
             modelBuilder.ApplyConfiguration(new ShopConfiguration());
             modelBuilder.ApplyConfiguration(new OrderItemConfiguration());
             modelBuilder.ApplyConfiguration(new ProviderConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderConfiguration());
 
 
             modelBuilder.Entity<Category>().HasData(

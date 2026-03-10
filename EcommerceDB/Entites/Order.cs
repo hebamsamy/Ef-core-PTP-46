@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EcommerceDB.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,9 +10,9 @@ namespace EcommerceDB.Entites
         public int ID { get; set; }
         public DateTime DateTime { get; set; }
         public string PhoneNumber { get; set; }
-        public string Address { get; set; }
+        public Address Address { get; set; }
 
-        public int? Status { get; set; }
+        public OrderStatus OrderStatus { get; set; }
         public virtual ICollection<OrderItem> Items { get; set; }
 
     }

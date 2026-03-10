@@ -35,6 +35,19 @@ namespace EcommerceDB.Configuration
                 .HasForeignKey(p=>p.CategoryID)
                 .OnDelete(DeleteBehavior.NoAction);
 
+
+            builder.Property(p => p.Stock)
+                .IsRequired(false).HasDefaultValue(1);
+
+            builder.Property(p => p.ISDeleted)
+               .IsRequired(false).HasDefaultValue(false);
+
+
+
+            ////
+            ///
+            builder
+                .HasQueryFilter(p => p.Stock > 0 && p.ISDeleted == false);
         }
     }
 }

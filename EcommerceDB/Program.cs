@@ -21,6 +21,9 @@ Console.WriteLine("Hello, World!");
 
 using (EcommerceDBContext dbContext = new EcommerceDBContext())
 {
+
+
+
     //var data2 = new Category { Name = "Cars", Description = "Cars" };
     //var data1 = new Category { Name = "furnature", Description = "furnature" };
     //dbContext.Categories.AddRange(data1,data1);
@@ -124,17 +127,83 @@ using (EcommerceDBContext dbContext = new EcommerceDBContext())
 
 
 
-    var data = dbContext.Products;
-    foreach( var product in data)
-    {
-        Console.WriteLine($"{product.Name } : {product.Provider.FullName} : {product.Category.Name}");
-    }
+    #region DML with DBCONTEXT
+    //var data = dbContext.Products.Where(p=> p.Name.Contains("t"));
+
+    //var re = data.ToList();
+    //re[0].Price = 100;
+
+
+    //Console.WriteLine($" re[0]: {dbContext.Entry(re[0]).State}"); 
+    //Console.WriteLine($" re[1]: {dbContext.Entry(re[1]).State}"); 
+    //Console.WriteLine($" re[2]: {dbContext.Entry(re[2]).State}");
+
+
+    //var p = new Product { Name = "hh", Description = "oo", CategoryID = 1, Price = 90, ProviderID = 1 };
+    //dbContext.Products.Add(p);
+
+    //Console.WriteLine($" p: {dbContext.Entry(p).State}");
+
+
+    //dbContext.Entry(re[1]).State = EntityState.Deleted;
+    //re.Remove(re[0]); 
+    #endregion
+
+    ///////////////////
+    ///
+
+    #region NO Track
+    //Read only list
+    //var data = dbContext.Products.AsNoTracking()
+    //    .Where(p => p.Name.Contains("t"));
+
+    //var re = data.ToList();
+
+    //foreach (var product in re)
+    //{
+    //    Console.WriteLine($"{product.Name} ");
+    //} 
+    #endregion
+
+
+    #region Query  Fillter
+    ////var query = dbContext.Products.Where(p=>p.Name.Contains("t"));
+    //var query = dbContext.Products
+    //    .IgnoreQueryFilters().Where(p=>p.ProviderID == 1);
+
+    ////dbContext.Remove(query.First());
+    ////query[0].
+
+    //foreach (var product in query)
+    //{
+    //    Console.WriteLine(product.Name);
+    //}
+
+    //int row = dbContext.SaveChanges();
+    //Console.WriteLine($"Accefted Rows {row}");
+
+    #endregion
+
+
+
+
+    string column = "Price";
+    string value = "100";
+    int id = 1;
+    var query = dbContext.Products
+        .FromSqlRaw($"Select * from [Sales].[Product] where {column} = {value}")
+        .Where(p => p.Name.Contains("t"));
+
+
+    var Quary = dbContext.Products.FromSqlRaw($"exec SP_GetProductByProviderID {id}").AsEnumerable();
+
+    Console.WriteLine(Quary.ToList().Count);
+
+
+
+    
+
 
 
 }
-
-
-
-
-
 

@@ -18,6 +18,9 @@ namespace EcommerceDB.Configuration
             builder.HasOne(s => s.Provider)
                 .WithOne(p => p.Shop)
                 .HasForeignKey<Shop>(s => s.ProviderID);
+
+            //builder.ComplexProperty(s => s.Address);
+            builder.OwnsMany(s => s.Addresses);
         }
     }
 }

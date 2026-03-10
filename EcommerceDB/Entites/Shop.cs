@@ -11,6 +11,7 @@ namespace EcommerceDB.Entites
         public string Logo { get; set; }
         public string Image { get; set; }
 
+        public ICollection<Address> Addresses { get; set; }
         public int ProviderID { get; set; }
         public virtual Provider Provider { get; set; }
 
