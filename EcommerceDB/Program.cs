@@ -2,6 +2,7 @@
 using EcommerceDB.Context;
 using EcommerceDB.Entites;
 using Microsoft.EntityFrameworkCore;
+using EcommerceDB.Helper;
 
 Console.WriteLine("Hello, World!");
 
@@ -187,23 +188,52 @@ using (EcommerceDBContext dbContext = new EcommerceDBContext())
 
 
 
-    string column = "Price";
-    string value = "100";
-    int id = 1;
-    var query = dbContext.Products
-        .FromSqlRaw($"Select * from [Sales].[Product] where {column} = {value}")
-        .Where(p => p.Name.Contains("t"));
+    #region SQL Raw
+    //string column = "Price";
+    //string value = "100";
+    //int id = 1;
+    //var query = dbContext.Products
+    //    .FromSqlRaw($"Select * from [Sales].[Product] where {column} = {value}")
+    //    .Where(p => p.Name.Contains("t"));
 
 
-    var Quary = dbContext.Products.FromSqlRaw($"exec SP_GetProductByProviderID {id}").AsEnumerable();
+    //var Quary = dbContext.Products.FromSqlRaw($"exec SP_GetProductByProviderID {id}").AsEnumerable();
 
-    Console.WriteLine(Quary.ToList().Count);
+    //Console.WriteLine(Quary.ToList().Count); 
+    #endregion
 
 
 
-    
+    #region Queryable Ext
+    //var data = dbContext.Products.Take(2);
 
+    //string sortBy = "Name";
+    //var data = dbContext.Products.Where(p => p.Price > 100).OrderBy(x => x.Name);
+
+
+
+    //foreach (var item in data)
+    //{
+    //    Console.WriteLine($" Product  : {item.Name}");
+    //}
+    #endregion
+
+
+    var data = dbContext.Products.Find(7);
+
+    data.Stock -= 1;
+
+    dbContext.SaveChanges();
+
+
+    //var p = dbContext.Products.f;
+
+    //Console.WriteLine(p.Name);
 
 
 }
+
+
+
+
 
