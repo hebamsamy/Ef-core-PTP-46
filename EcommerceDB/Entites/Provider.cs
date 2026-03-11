@@ -7,6 +7,7 @@ namespace EcommerceDB.Entites
     public class Provider
     {
         public int ID { get; set; }
+        //public Class1.FullName FullName { get; set; }
         public string FullName { get; set; }
      
         public string UserName { get; set; }

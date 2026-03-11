@@ -10,7 +10,25 @@ namespace EcommerceDB
     public  class Class1
     {
 
+        public record PrductPrice(decimal Price, string Name, int Id)
+        {
+            public override string ToString()
+            {
+                return $"{Name}";
+            }
+        }
+    
 
+
+    //public class Amr(int Age, string Name)
+    //{
+    //    public override string ToString()
+    //    {
+    //        return base.ToString();
+    //    }
+    //}
+
+    public record FullName(string Fname, string LName);
         public IQueryable<Product> GetAll( 
             string? name = null, decimal price = 1, 
             string sort = "Id", int pageSize = 2, int paganumber = 1)

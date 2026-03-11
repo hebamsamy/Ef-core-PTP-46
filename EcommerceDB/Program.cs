@@ -1,10 +1,48 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using Castle.Core.Resource;
 using EcommerceDB.Context;
 using EcommerceDB.Entites;
-using Microsoft.EntityFrameworkCore;
 using EcommerceDB.Helper;
+using Microsoft.EntityFrameworkCore;
+using static EcommerceDB.Class1;
 
-Console.WriteLine("Hello, World!");
+namespace EcommerceDB
+{
+    public class program
+    {
+
+
+        public record FullName(string Fname, string LName);
+        public static void Main()
+        {
+
+            using (EcommerceDBContext dbContext = new EcommerceDBContext())
+            {
+
+
+                //dbContext.Products.FromSql($"Select Count(*) from [Sales].[Product]  where ProviderID = 1 ");
+                //var data =  dbContext.Database.SqlQuery<int>($"Select Count(*) from [Sales].[Product]  where ProviderID = 1 ").ToList();
+                //var data =  dbContext.Database.
+                //    SqlQuery<PrductPrice>($"Select Id, Price,Name from [Sales].[Product]  where ProviderID = 1 ").ToList();
+
+                //data[1].Price = 0; immutable
+                //foreach (var pr in data) {
+                //    Console.WriteLine(pr);
+                //}
+
+
+                //var data = dbContext.Products.Where(p=>p.Price>100).OrderBy("Price").Take(2);
+
+                //var data2 = dbContext.Products.Where(p => p.Price > 100).OrderBy("Price").Take(2);
+
+                //var data3 = dbContext.Products.Where(p => p.Price > 100).OrderBy("Price").Take(2);
+
+                //dbContext.SaveChanges();
+            }
+        }
+    }
+}
+
 
 //insert
 
@@ -20,8 +58,7 @@ Console.WriteLine("Hello, World!");
 //}
 
 
-using (EcommerceDBContext dbContext = new EcommerceDBContext())
-{
+
 
 
 
@@ -219,19 +256,21 @@ using (EcommerceDBContext dbContext = new EcommerceDBContext())
     #endregion
 
 
-    var data = dbContext.Products.Find(7);
+    #region Concurancy Check
+    //var data = dbContext.Products.Find(7);
 
-    data.Stock -= 1;
+    //data.Stock -= 1;
 
-    dbContext.SaveChanges();
+    //dbContext.SaveChanges();
 
 
     //var p = dbContext.Products.f;
 
-    //Console.WriteLine(p.Name);
+    //Console.WriteLine(p.Name); 
+    #endregion
 
 
-}
+
 
 
 

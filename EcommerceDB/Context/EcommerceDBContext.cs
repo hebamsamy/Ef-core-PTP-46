@@ -16,6 +16,18 @@ namespace EcommerceDB.Context
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
 
+        public override int SaveChanges()
+        {
+
+
+            //Console.WriteLine("Called");
+
+            var data = base.ChangeTracker.Entries();
+
+
+            return base.SaveChanges();
+        }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
